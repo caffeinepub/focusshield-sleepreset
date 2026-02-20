@@ -1,0 +1,490 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "FocusShield+SleepReset Frontend Implementation Plan",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create onboarding flow collecting user preferences (wake/sleep time, work hours, meeting load, caffeine, diet, goals)",
+      "acceptanceCriteria": [
+        "User can input wake and sleep times",
+        "User can specify work hours range",
+        "User can indicate typical meeting load",
+        "User can select caffeine consumption habits",
+        "User can choose diet preference (veg/non-veg)",
+        "User can select one or more goals from: less stress, better sleep, better focus",
+        "All preferences are persisted to backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Onboarding/OnboardingFlow.tsx",
+          "operation": "create",
+          "description": "Create multi-step onboarding component with forms for collecting wake time, sleep time, work hours, typical meeting load, caffeine habits, diet preference (vegetarian/non-vegetarian), and goals (less stress, better sleep, better focus). Use shadcn/ui form components. Call backend createOrUpdateUserProfile method with collected UserPreferences data."
+        },
+        {
+          "path": "frontend/src/components/Onboarding/PreferencesForm.tsx",
+          "operation": "create",
+          "description": "Create form component with input fields for all user preferences. Use shadcn/ui Select, Input, RadioGroup, and Checkbox components. Validate all required fields before submission."
+        },
+        {
+          "path": "frontend/src/pages/OnboardingPage.tsx",
+          "operation": "create",
+          "description": "Create onboarding page that wraps OnboardingFlow component. Handle navigation to dashboard after successful completion."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /onboarding pointing to OnboardingPage. Set onboarding as initial route for new users without profile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement calendar integration placeholder and display daily meeting load score on dashboard",
+      "acceptanceCriteria": [
+        "Calendar integration UI allows user to connect calendar (placeholder for OAuth flow)",
+        "System calculates daily meeting load score from meeting data",
+        "Score considers total meeting hours per day",
+        "Score accounts for back-to-back meetings (no gap between meetings)",
+        "Score increases for meetings after 7 PM",
+        "Meeting load score is visible on dashboard",
+        "Only meeting times are stored, not content"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Calendar/CalendarIntegration.tsx",
+          "operation": "create",
+          "description": "Create calendar integration UI with placeholder buttons for Google/Outlook connection. Display connection status and last sync time. Show informational message that OAuth integration is coming soon. Reference generated image frontend/public/assets/generated/calendar-icon.dim_128x128.png."
+        },
+        {
+          "path": "frontend/src/components/Dashboard/MeetingLoadScore.tsx",
+          "operation": "create",
+          "description": "Create component displaying daily meeting load score. Calculate score from meetings using formula: total hours + back-to-back penalty + after-7pm penalty. Show score visually using progress indicator or gauge. Reference generated image frontend/public/assets/generated/calendar-icon.dim_128x128.png."
+        },
+        {
+          "path": "frontend/src/hooks/useMeetingLoad.ts",
+          "operation": "create",
+          "description": "Create hook that fetches user meetings and calculates daily meeting load score. Implement calculation logic for total hours, back-to-back meetings detection, and late meetings (after 7 PM). Return score and breakdown."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add MeetingLoadScore component to dashboard layout. Position prominently in header area with generated hero background frontend/public/assets/generated/hero-bg.dim_1200x400.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build Focus Mode with automatic reset breaks between back-to-back meetings offering guided content",
+      "acceptanceCriteria": [
+        "System detects back-to-back meetings from calendar data",
+        "Reset breaks are automatically scheduled between consecutive meetings",
+        "Each break includes 4 activity options: breathing, eye relaxation, neck stretch, mindfulness audio",
+        "Each activity has sample content/scripts included",
+        "User sees one-tap start button to begin break activity",
+        "User can snooze a break notification",
+        "Break duration is 1-2 minutes"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Focus/FocusMode.tsx",
+          "operation": "create",
+          "description": "Create Focus Mode main component that displays upcoming reset breaks scheduled between back-to-back meetings. Show break countdown timer and one-tap start button. Reference generated image frontend/public/assets/generated/focus-icon.dim_128x128.png for mode icon."
+        },
+        {
+          "path": "frontend/src/components/Focus/ResetBreak.tsx",
+          "operation": "create",
+          "description": "Create reset break component offering 4 activity types: breathing exercise, eye relaxation, neck stretch, mindfulness audio. Each activity shows duration (1-2 minutes). Include start and snooze buttons. Reference generated image frontend/public/assets/generated/breathing-illustration.dim_300x300.png for breathing exercises."
+        },
+        {
+          "path": "frontend/src/components/Focus/ActivityContent.tsx",
+          "operation": "create",
+          "description": "Create component displaying guided content for selected break activity. Include step-by-step instructions and timer. Content works offline and references wellness scripts from data files."
+        },
+        {
+          "path": "frontend/src/data/wellnessScripts.ts",
+          "operation": "create",
+          "description": "Create data file containing sample scripts for breathing exercises (3-4 techniques), eye relaxation routine (1-2 minutes), neck stretches (1-2 minutes), and mindfulness scripts (2-3 variations). All content brief, calming, professional tone as per REQ-12."
+        },
+        {
+          "path": "frontend/src/hooks/useResetBreaks.ts",
+          "operation": "create",
+          "description": "Create hook that detects back-to-back meetings (no gap between meetings) and generates reset break schedule. Return array of scheduled breaks with timing and activity suggestions."
+        },
+        {
+          "path": "frontend/src/pages/FocusModePage.tsx",
+          "operation": "create",
+          "description": "Create Focus Mode page wrapping FocusMode component. Handle break notifications and activity tracking. Store break completion via backend addActivity method."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /focus pointing to FocusModePage. Add navigation link in main layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Implement Smart Focus Blocks suggesting 30-90 minute blocks in free calendar slots",
+      "acceptanceCriteria": [
+        "System analyzes calendar for free slots",
+        "System suggests focus blocks of 30-90 minutes in available time slots",
+        "User can accept, modify, or reject suggested blocks",
+        "Accepted blocks are locked and protected",
+        "Notifications are sent to remind user when focus block starts",
+        "Focus blocks are visible on dashboard"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Focus/SmartFocusBlocks.tsx",
+          "operation": "create",
+          "description": "Create component displaying suggested focus blocks with accept/modify/reject actions. Show block duration (30-90 minutes), timing, and protection status. Call backend getFocusBlocks and addFocusBlock methods."
+        },
+        {
+          "path": "frontend/src/components/Focus/FocusBlockCard.tsx",
+          "operation": "create",
+          "description": "Create card component for individual focus block showing time slot, duration controls (30-90 min slider), and action buttons (accept/modify/reject). Update block status via backend."
+        },
+        {
+          "path": "frontend/src/hooks/useFocusBlocks.ts",
+          "operation": "create",
+          "description": "Create hook that fetches user meetings and analyzes free slots for focus block suggestions. Generate blocks of 30-90 minutes. Handle block CRUD operations using backend methods."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add SmartFocusBlocks component to dashboard showing today's focus blocks count and upcoming blocks."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Create stress check-in with mood slider and dashboard displaying meeting load, stress level, and focus blocks used",
+      "acceptanceCriteria": [
+        "Mood slider appears 2-3 times per day via notification or prompt",
+        "Slider allows quick stress level input (10 seconds or less)",
+        "Dashboard shows today's meeting load score",
+        "Dashboard shows current stress level from latest check-in",
+        "Dashboard shows count of focus blocks used today",
+        "Stress check-in history is stored for insights"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/StressCheckIn/MoodSlider.tsx",
+          "operation": "create",
+          "description": "Create simple mood slider component (1-10 scale) for quick stress check-in. Submit value to backend addStressCheckIn method. Include friendly prompt and takes less than 10 seconds to complete."
+        },
+        {
+          "path": "frontend/src/components/StressCheckIn/CheckInPrompt.tsx",
+          "operation": "create",
+          "description": "Create prompt component that displays mood slider at scheduled times (2-3 times per day). Use browser notifications API for reminders. Track last check-in time in local storage."
+        },
+        {
+          "path": "frontend/src/components/Dashboard/TodaySummary.tsx",
+          "operation": "create",
+          "description": "Create dashboard summary component displaying three metrics: meeting load score (from REQ-2), current stress level (latest check-in), and focus blocks used today count. Use card layout with clear labels. Reference generated image frontend/public/assets/generated/hero-bg.dim_1200x400.png as background."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add TodaySummary component prominently at top of dashboard. Add CheckInPrompt component to trigger scheduled mood check-ins."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Build Sleep Mode with wind-down routine and late-call recovery plan",
+      "acceptanceCriteria": [
+        "Wind-down routine sends reminders at appropriate times before sleep",
+        "Reminders include: screens off, meditation, journaling prompts",
+        "System detects meetings ending after 8 PM",
+        "Late-call recovery plan adjusts alarm time for next morning",
+        "Lighter morning routine suggestions are provided after late meetings",
+        "User can customize wind-down timing based on sleep schedule"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Sleep/SleepMode.tsx",
+          "operation": "create",
+          "description": "Create Sleep Mode main component showing wind-down routine schedule with reminders for screens off, meditation, and journaling. Display user's sleep time from preferences. Reference generated image frontend/public/assets/generated/sleep-icon.dim_128x128.png for mode icon."
+        },
+        {
+          "path": "frontend/src/components/Sleep/WindDownRoutine.tsx",
+          "operation": "create",
+          "description": "Create wind-down routine component with three steps: screens off reminder, short meditation guide, and journaling prompt. Calculate reminder times based on user sleep time. Allow customization of timing."
+        },
+        {
+          "path": "frontend/src/components/Sleep/LateCallRecovery.tsx",
+          "operation": "create",
+          "description": "Create late-call recovery component that detects meetings ending after 8 PM and suggests adjusted alarm time and lighter morning routine. Show recovery suggestions prominently when triggered."
+        },
+        {
+          "path": "frontend/src/hooks/useSleepRoutine.ts",
+          "operation": "create",
+          "description": "Create hook managing wind-down reminders and late meeting detection. Check calendar for meetings after 8 PM. Calculate adjusted wake times and return routine suggestions."
+        },
+        {
+          "path": "frontend/src/pages/SleepModePage.tsx",
+          "operation": "create",
+          "description": "Create Sleep Mode page wrapping SleepMode component. Handle notification scheduling for wind-down routine. Display LateCallRecovery when applicable."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /sleep pointing to SleepModePage. Add navigation link in main layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement caffeine cutoff reminder system with tracking",
+      "acceptanceCriteria": [
+        "User can input their last caffeine consumption time each day",
+        "System calculates recommended cutoff time (6 hours before sleep)",
+        "User can customize cutoff reminder time",
+        "Reminder notification is sent at cutoff time",
+        "System tracks whether user adhered to cutoff",
+        "Adherence data is visible in weekly insights"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Caffeine/CaffeineCutoff.tsx",
+          "operation": "create",
+          "description": "Create caffeine cutoff component with input for last caffeine time and customizable cutoff reminder setting. Calculate default cutoff as 6 hours before sleep time from preferences. Reference generated image frontend/public/assets/generated/caffeine-icon.dim_128x128.png."
+        },
+        {
+          "path": "frontend/src/components/Caffeine/CaffeineTracker.tsx",
+          "operation": "create",
+          "description": "Create caffeine tracking component showing daily adherence to cutoff time. Log caffeine consumption times and compare against cutoff. Store tracking data via backend addActivity method."
+        },
+        {
+          "path": "frontend/src/hooks/useCaffeineReminder.ts",
+          "operation": "create",
+          "description": "Create hook managing caffeine cutoff reminders using browser notifications. Calculate reminder time, track adherence, and return tracking data for insights."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Add CaffeineCutoff component to dashboard showing today's cutoff status and quick log button."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create daily diet plan generator with veg/non-veg customization and medical disclaimer",
+      "acceptanceCriteria": [
+        "Diet plan includes breakfast, lunch, dinner recommendations",
+        "Hydration reminders are included",
+        "Plan is customized based on veg/non-veg preference from onboarding",
+        "User can enable 'light dinner' option",
+        "Meal suggestions focus on sustained energy and sleep quality",
+        "Prominent medical disclaimer is displayed on diet screen",
+        "Diet plan is regenerated daily or on-demand"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Diet/DietPlan.tsx",
+          "operation": "create",
+          "description": "Create diet plan component displaying breakfast, lunch, dinner, and hydration suggestions. Customize based on user dietPreference from profile (vegetarian/nonVegetarian). Include toggle for light dinner option. Show prominent disclaimer: 'This is not medical advice. Consult a healthcare professional for personalized dietary guidance.'"
+        },
+        {
+          "path": "frontend/src/components/Diet/MealCard.tsx",
+          "operation": "create",
+          "description": "Create meal card component showing individual meal suggestion with ingredients and nutritional focus (energy/sleep quality). Display meal name, description, and timing recommendation."
+        },
+        {
+          "path": "frontend/src/data/dietSuggestions.ts",
+          "operation": "create",
+          "description": "Create data file with meal suggestions organized by vegetarian/non-vegetarian and meal type (breakfast/lunch/dinner). Focus suggestions on sustained energy and sleep quality. Include hydration reminders throughout day."
+        },
+        {
+          "path": "frontend/src/hooks/useDietPlan.ts",
+          "operation": "create",
+          "description": "Create hook generating daily diet plan based on user dietPreference. Filter meal suggestions and apply light dinner option when enabled. Return meal plan array and regeneration function."
+        },
+        {
+          "path": "frontend/src/pages/DietPlanPage.tsx",
+          "operation": "create",
+          "description": "Create Diet Plan page wrapping DietPlan component. Display medical disclaimer prominently at top. Allow regeneration of daily plan."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /diet pointing to DietPlanPage. Add navigation link in main layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Build weekly insights report analyzing patterns and providing 3 actionable tips",
+      "acceptanceCriteria": [
+        "System generates weekly insights report every 7 days",
+        "Report analyzes patterns from the past week",
+        "Report provides exactly 3 actionable tips",
+        "Tips are based on detected patterns (late meetings, stress levels, sleep quality, caffeine timing)",
+        "Recommendations are specific and actionable",
+        "User can view current and past weekly reports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Insights/WeeklyInsights.tsx",
+          "operation": "create",
+          "description": "Create weekly insights component displaying analyzed patterns and exactly 3 actionable tips. Show correlations between late meetings and stress, high-stress days and break usage, poor sleep and caffeine adherence. Fetch weeklyInsights from backend user profile."
+        },
+        {
+          "path": "frontend/src/components/Insights/InsightCard.tsx",
+          "operation": "create",
+          "description": "Create insight card component for individual tip display. Show pattern detected, recommendation, and supporting data visualization. Make recommendations specific and actionable."
+        },
+        {
+          "path": "frontend/src/hooks/useWeeklyInsights.ts",
+          "operation": "create",
+          "description": "Create hook analyzing past week data to generate insights. Detect patterns: late meetings correlation with stress, high-stress days with break usage, poor sleep with caffeine timing. Generate 3 specific recommendations such as earlier meeting wrap-up, more breaks on high-stress days, earlier caffeine cutoff."
+        },
+        {
+          "path": "frontend/src/pages/InsightsPage.tsx",
+          "operation": "create",
+          "description": "Create Insights page wrapping WeeklyInsights component. Display current week insights and allow viewing past reports. Show weekly generation schedule."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /insights pointing to InsightsPage. Add navigation link in main layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Implement privacy-focused architecture with clear privacy policy page",
+      "acceptanceCriteria": [
+        "User data is stored locally by default",
+        "Optional cloud sync is available for backup",
+        "Privacy policy page clearly states no employer sharing",
+        "Privacy page explains local-first data storage approach",
+        "Meeting content is never stored, only timestamps and duration",
+        "User can view and understand privacy controls"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PrivacyPage.tsx",
+          "operation": "create",
+          "description": "Create privacy policy page explaining: personal data stored locally by default, no data shared with employers, optional cloud sync for backup only, meeting content never stored (only timestamps and duration). Include clear privacy controls section."
+        },
+        {
+          "path": "frontend/src/components/Privacy/PrivacyControls.tsx",
+          "operation": "create",
+          "description": "Create privacy controls component with toggles for optional cloud sync. Show data storage location status and sync status. Explain local-first approach."
+        },
+        {
+          "path": "frontend/src/utils/storage.ts",
+          "operation": "create",
+          "description": "Create storage utility implementing local-first data storage using IndexedDB or localStorage. Provide optional cloud sync function that syncs to backend when enabled. Ensure meeting content is never included in stored data."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for /privacy pointing to PrivacyPage. Add privacy link in footer or settings menu."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Design clean, minimal UI working offline for routine features with notifications and proper loading states",
+      "acceptanceCriteria": [
+        "UI is clean and minimal with clear navigation",
+        "Routine content (breathing, stretches, meditation) works offline",
+        "Notifications are implemented for reminders and breaks",
+        "Loading states are shown during data fetches",
+        "Error messages are user-friendly",
+        "Onboarding has minimal steps",
+        "App is responsive and works well on mobile viewports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Layout/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create main app layout with clean, minimal navigation. Include header with app name, main navigation links (Dashboard, Focus, Sleep, Diet, Insights), and footer. Use shadcn/ui components for consistent styling. Ensure mobile-responsive design."
+        },
+        {
+          "path": "frontend/src/components/Layout/Navigation.tsx",
+          "operation": "create",
+          "description": "Create navigation component with clear links to main sections. Use minimal design with icons and labels. Implement mobile-friendly menu."
+        },
+        {
+          "path": "frontend/src/components/common/LoadingState.tsx",
+          "operation": "create",
+          "description": "Create reusable loading state component with spinner and optional loading message. Use during data fetches and backend calls. Apply consistent styling."
+        },
+        {
+          "path": "frontend/src/components/common/ErrorMessage.tsx",
+          "operation": "create",
+          "description": "Create user-friendly error message component. Display clear, actionable error messages. Include retry option when appropriate."
+        },
+        {
+          "path": "frontend/src/utils/notifications.ts",
+          "operation": "create",
+          "description": "Create notification utility using browser Notifications API for reminders and break prompts. Request permission on first use. Schedule notifications for stress check-ins, caffeine cutoff, wind-down routine, and focus blocks."
+        },
+        {
+          "path": "frontend/src/utils/offlineStorage.ts",
+          "operation": "create",
+          "description": "Create offline storage utility ensuring routine content (breathing exercises, stretches, meditation scripts) works offline. Cache wellness scripts and activity content in service worker or local storage."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap all routes with AppLayout component. Ensure navigation structure supports all created pages. Add loading and error boundaries."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Include sample content scripts for all wellness activities",
+      "acceptanceCriteria": [
+        "At least 3 breathing exercise scripts are included",
+        "Eye relaxation routine with step-by-step instructions",
+        "Neck and shoulder stretch routine with clear guidance",
+        "2-3 short mindfulness scripts are available",
+        "All content is 1-2 minutes in duration",
+        "Content tone is calming and professional",
+        "Scripts are accessible offline"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/wellnessScripts.ts",
+          "operation": "modify",
+          "description": "Ensure wellness scripts data file includes: at least 3 breathing exercise techniques (box breathing, 4-7-8 breathing, diaphragmatic breathing), eye relaxation routine with step-by-step instructions (1-2 minutes), neck and shoulder stretch routine with clear guidance (1-2 minutes), and 2-3 short mindfulness scripts. All content 1-2 minutes duration, calming and professional tone. Structure for offline access."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Design cohesive visual theme with warm, calming colors promoting focus and relaxation",
+      "acceptanceCriteria": [
+        "Color palette uses warm, calming tones (avoid blue and purple unless contextually appropriate)",
+        "Gradients and transitions are smooth and gentle",
+        "Typography is highly readable with comfortable sizing",
+        "Spacing promotes calm, uncluttered interface",
+        "Visual style is consistent across all screens",
+        "Design supports focus and stress reduction goals"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define global visual theme with warm, calming color palette (soft oranges, warm beiges, gentle yellows, muted greens). Add CSS variables for primary warm tones, accent colors, backgrounds, and text colors. Include smooth gradient definitions and gentle transition defaults. Set comfortable typography scale with readable font sizes. Define spacing scale promoting calm, uncluttered layout. Reference generated hero background frontend/public/assets/generated/hero-bg.dim_1200x400.png for inspiration."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with warm color palette matching design system. Add custom colors for warm tones (warmOrange, warmBeige, softYellow, mutedGreen). Configure typography plugin with comfortable reading sizes. Set spacing scale promoting calm interfaces. Add custom gradient utilities for smooth transitions. Ensure responsive breakpoints support mobile-first design."
+        },
+        {
+          "path": "frontend/src/components/Layout/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Apply cohesive visual theme to app layout. Use warm background colors, comfortable spacing, and readable typography. Ensure consistent styling across header, navigation, and main content areas. Apply gentle transitions to interactive elements."
+        }
+      ]
+    }
+  ]
+}

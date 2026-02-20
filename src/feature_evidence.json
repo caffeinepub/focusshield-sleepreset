@@ -1,0 +1,250 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-onboarding-flow-that-collects-user-preferences-wake-time-sleep-time-work-hours-typical-meeting-load-caffeine-habits-diet-preference-vegetarian-non-vegetarian-and-goals-less-stress-better-sleep-better-focus-store-these-preferences-in-the-backend-user-profile",
+      "featureTitle": "Create onboarding flow that collects user preferences: wake time, sleep time, work hours, typical meeting load, caffeine habits, diet preference (vegetarian/non-vegetarian), and goals (less stress, better sleep, better focus). Store these preferences in the backend user profile.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/OnboardingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-calendar-integration-placeholder-for-google-outlook-calendars-that-reads-meeting-times-only-no-meeting-content-calculate-and-store-a-daily-meeting-load-score-based-on-total-meeting-hours-number-of-back-to-back-meetings-and-meetings-scheduled-after-7-pm-display-this-score-on-the-dashboard",
+      "featureTitle": "Implement calendar integration placeholder for Google/Outlook calendars that reads meeting times only (no meeting content). Calculate and store a daily 'meeting load score' based on: total meeting hours, number of back-to-back meetings, and meetings scheduled after 7 PM. Display this score on the dashboard.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-focus-mode-feature-that-detects-back-to-back-meetings-and-automatically-schedules-1-2-minute-reset-breaks-between-them-each-reset-break-offers-guided-content-breathing-exercise-eye-relaxation-neck-stretch-or-short-mindfulness-audio-provide-one-tap-start-button-and-snooze-option-for-each-break",
+      "featureTitle": "Build Focus Mode feature that detects back-to-back meetings and automatically schedules 1-2 minute 'reset breaks' between them. Each reset break offers guided content: breathing exercise, eye relaxation, neck stretch, or short mindfulness audio. Provide one-tap start button and snooze option for each break.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/data/wellnessScripts.ts",
+        "frontend/src/pages/FocusModePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-smart-focus-blocks-feature-that-suggests-30-90-minute-focus-blocks-based-on-free-calendar-slots-allow-users-to-lock-these-blocks-and-send-notifications-to-protect-them-from-interruptions-users-should-be-able-to-accept-modify-duration-or-reject-suggested-blocks",
+      "featureTitle": "Implement Smart Focus Blocks feature that suggests 30-90 minute focus blocks based on free calendar slots. Allow users to lock these blocks and send notifications to protect them from interruptions. Users should be able to accept, modify duration, or reject suggested blocks.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-stress-check-in-system-with-a-10-second-mood-slider-that-prompts-user-2-3-times-per-day-build-a-dashboard-that-displays-today-s-meeting-load-score-current-stress-level-from-check-ins-and-number-of-focus-blocks-used-today",
+      "featureTitle": "Create stress check-in system with a 10-second mood slider that prompts user 2-3 times per day. Build a dashboard that displays: today's meeting load score, current stress level from check-ins, and number of focus blocks used today.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-sleep-mode-with-nightly-wind-down-routine-that-sends-reminders-for-screens-off-time-short-meditation-and-journaling-implement-late-call-recovery-plan-that-detects-when-meetings-end-late-after-8-pm-adjusts-next-morning-alarm-time-accordingly-and-suggests-a-lighter-morning-routine",
+      "featureTitle": "Build Sleep Mode with nightly wind-down routine that sends reminders for: screens off time, short meditation, and journaling. Implement 'late-call recovery plan' that detects when meetings end late (after 8 PM), adjusts next morning alarm time accordingly, and suggests a lighter morning routine.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/SleepModePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-caffeine-cutoff-reminder-system-collect-user-s-last-caffeine-consumption-time-and-recommend-a-customizable-cutoff-time-default-6-hours-before-sleep-time-send-reminders-at-cutoff-time-and-track-adherence-over-time",
+      "featureTitle": "Implement caffeine cutoff reminder system. Collect user's last caffeine consumption time and recommend a customizable cutoff time (default 6 hours before sleep time). Send reminders at cutoff time and track adherence over time.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-simple-daily-diet-plan-generator-that-produces-breakfast-lunch-dinner-and-hydration-suggestions-focused-on-energy-and-sleep-quality-make-it-customizable-by-vegetarian-non-vegetarian-preference-and-include-light-dinner-option-display-prominent-disclaimer-this-is-not-medical-advice-consult-a-healthcare-professional-for-personalized-dietary-guidance",
+      "featureTitle": "Create simple daily diet plan generator that produces breakfast, lunch, dinner, and hydration suggestions focused on energy and sleep quality. Make it customizable by vegetarian/non-vegetarian preference and include light dinner option. Display prominent disclaimer: 'This is not medical advice. Consult a healthcare professional for personalized dietary guidance.'",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/data/dietSuggestions.ts",
+        "frontend/src/pages/DietPlanPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-weekly-insights-report-that-analyzes-patterns-and-provides-3-actionable-tips-analyze-correlations-between-late-meetings-and-stress-high-stress-days-and-break-usage-poor-sleep-nights-and-caffeine-cutoff-adherence-generate-specific-recommendations-like-propose-earlier-meeting-wrap-up-times-suggest-adding-more-breaks-on-high-stress-days-recommend-earlier-caffeine-cutoff-for-poor-sleep-patterns",
+      "featureTitle": "Build weekly insights report that analyzes patterns and provides 3 actionable tips. Analyze correlations between: late meetings and stress, high-stress days and break usage, poor sleep nights and caffeine cutoff adherence. Generate specific recommendations like: propose earlier meeting wrap-up times, suggest adding more breaks on high-stress days, recommend earlier caffeine cutoff for poor sleep patterns.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/InsightsPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-privacy-focused-architecture-with-local-data-storage-as-default-create-clear-privacy-policy-page-that-explains-personal-data-is-stored-locally-no-data-is-shared-with-employers-optional-cloud-sync-is-available-for-backup-only-ensure-meeting-content-is-never-stored-only-timing-data",
+      "featureTitle": "Implement privacy-focused architecture with local data storage as default. Create clear privacy policy page that explains: personal data is stored locally, no data is shared with employers, optional cloud sync is available for backup only. Ensure meeting content is never stored, only timing data.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/PrivacyPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-a-clean-minimal-ui-that-works-offline-for-all-routine-features-breathing-exercises-stretches-meditation-content-diet-suggestions-ensure-notifications-work-for-reminders-and-break-prompts-implement-proper-loading-states-and-error-handling-for-calendar-integration",
+      "featureTitle": "Design a clean, minimal UI that works offline for all routine features (breathing exercises, stretches, meditation content, diet suggestions). Ensure notifications work for reminders and break prompts. Implement proper loading states and error handling for calendar integration.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Layout/AppLayout.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-include-sample-content-scripts-for-all-wellness-activities-breathing-exercises-3-4-guided-techniques-eye-relaxation-routine-1-2-minutes-neck-and-shoulder-stretches-1-2-minutes-and-short-mindfulness-audio-scripts-2-3-variations-content-should-be-brief-calming-and-professional-in-tone",
+      "featureTitle": "Include sample content scripts for all wellness activities: breathing exercises (3-4 guided techniques), eye relaxation routine (1-2 minutes), neck and shoulder stretches (1-2 minutes), and short mindfulness audio scripts (2-3 variations). Content should be brief, calming, and professional in tone.",
+      "files": [
+        "frontend/src/data/wellnessScripts.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-design-and-implement-a-cohesive-visual-theme-with-warm-calming-colors-that-promote-focus-and-relaxation-use-soft-gradients-gentle-transitions-and-comfortable-spacing-typography-should-be-readable-and-soothing-create-a-consistent-style-across-all-screens-including-onboarding-dashboard-focus-mode-sleep-mode-and-insights",
+      "featureTitle": "Design and implement a cohesive visual theme with warm, calming colors that promote focus and relaxation. Use soft gradients, gentle transitions, and comfortable spacing. Typography should be readable and soothing. Create a consistent style across all screens including onboarding, dashboard, focus mode, sleep mode, and insights.",
+      "files": [
+        "frontend/src/components/Layout/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

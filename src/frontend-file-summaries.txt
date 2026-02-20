@@ -1,0 +1,16 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, route definitions for all pages (dashboard, onboarding, focus, sleep, diet, insights, privacy), and theme provider integration.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including user profile management, activities, focus blocks, stress check-ins, and meetings with proper state invalidation.",
+  "frontend/src/components/Layout/AppLayout.tsx": "Main layout component with responsive header navigation, mobile menu, authentication controls, and footer with caffeine.ai attribution and social links.",
+  "frontend/src/pages/OnboardingPage.tsx": "Multi-step onboarding flow collecting user preferences (wake/sleep times, work hours, meeting load, caffeine habits, diet preference, goals) with progress indicator and form validation.",
+  "frontend/src/pages/DashboardPage.tsx": "Dashboard page displaying meeting load score, stress level, focus blocks used, stress check-in prompt, and quick action cards for navigating to other features.",
+  "frontend/src/pages/FocusModePage.tsx": "Focus mode page with reset break activities (breathing, eye relaxation, stretches, mindfulness), activity player with progress tracking, and smart focus block scheduling (30/60/90 min).",
+  "frontend/src/pages/SleepModePage.tsx": "Sleep mode page with wind-down routine configuration (screens off, meditation, journaling reminders), late call recovery information, and sleep tips.",
+  "frontend/src/pages/DietPlanPage.tsx": "Diet plan page generating personalized meal suggestions based on vegetarian/non-vegetarian preference with light dinner option, hydration reminders, and prominent medical disclaimer.",
+  "frontend/src/pages/InsightsPage.tsx": "Weekly insights page displaying summary statistics, top 3 pattern-based recommendations (late meetings, stress-break correlation, caffeine timing), and weekly highlights.",
+  "frontend/src/pages/PrivacyPage.tsx": "Privacy policy page explaining local-first storage, no employer sharing, meeting privacy, transparency principles, privacy controls for cloud sync, and detailed data collection information.",
+  "frontend/src/data/wellnessScripts.ts": "Wellness content data file containing guided scripts for breathing exercises (box breathing, 4-7-8, diaphragmatic), eye relaxation routines, neck stretches, and mindfulness practices (body scan, present moment, gratitude).",
+  "frontend/src/data/dietSuggestions.ts": "Diet suggestions data file with meal options organized by vegetarian/non-vegetarian preference and meal type (breakfast, lunch, dinner, light dinner) with ingredients and descriptions.",
+  "frontend/src/index.css": "Global styles with warm, calming OKLCH color system (warm orange, beige, soft yellow, muted green) for both light and dark modes, custom design tokens, and typography settings.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending theme with warm color palette (warmOrange, warmBeige, softYellow, mutedGreen), custom shadows, Inter/Poppins fonts, and smooth animations."
+}

@@ -1,0 +1,330 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-20T05:55:42.379Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 13,
+    "implemented": 13,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create onboarding flow that collects user preferences: wake time, sleep time, work hours, typical meeting load, caffeine habits, diet preference (vegetarian/non-vegetarian), and goals (less stress, better sleep, better focus). Store these preferences in the backend user profile.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Onboarding/OnboardingFlow.tsx",
+          "frontend/src/components/Onboarding/PreferencesForm.tsx",
+          "frontend/src/pages/OnboardingPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/OnboardingPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-10",
+        "summary": "Implement privacy-focused architecture with local data storage as default. Create clear privacy policy page that explains: personal data is stored locally, no data is shared with employers, optional cloud sync is available for backup only. Ensure meeting content is never stored, only timing data.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/PrivacyPage.tsx",
+          "frontend/src/components/Privacy/PrivacyControls.tsx",
+          "frontend/src/utils/storage.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/PrivacyPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-11",
+        "summary": "Design a clean, minimal UI that works offline for all routine features (breathing exercises, stretches, meditation content, diet suggestions). Ensure notifications work for reminders and break prompts. Implement proper loading states and error handling for calendar integration.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Layout/AppLayout.tsx",
+          "frontend/src/components/Layout/Navigation.tsx",
+          "frontend/src/components/common/LoadingState.tsx",
+          "frontend/src/components/common/ErrorMessage.tsx",
+          "frontend/src/utils/notifications.ts",
+          "frontend/src/utils/offlineStorage.ts",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Layout/AppLayout.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-12",
+        "summary": "Include sample content scripts for all wellness activities: breathing exercises (3-4 guided techniques), eye relaxation routine (1-2 minutes), neck and shoulder stretches (1-2 minutes), and short mindfulness audio scripts (2-3 variations). Content should be brief, calming, and professional in tone.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/wellnessScripts.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/wellnessScripts.ts"
+        ]
+      },
+      {
+        "id": "REQ-13",
+        "summary": "Design and implement a cohesive visual theme with warm, calming colors that promote focus and relaxation. Use soft gradients, gentle transitions, and comfortable spacing. Typography should be readable and soothing. Create a consistent style across all screens including onboarding, dashboard, focus mode, sleep mode, and insights.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout/AppLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/Layout/AppLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement calendar integration placeholder for Google/Outlook calendars that reads meeting times only (no meeting content). Calculate and store a daily 'meeting load score' based on: total meeting hours, number of back-to-back meetings, and meetings scheduled after 7 PM. Display this score on the dashboard.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Calendar/CalendarIntegration.tsx",
+          "frontend/src/components/Dashboard/MeetingLoadScore.tsx",
+          "frontend/src/hooks/useMeetingLoad.ts",
+          "frontend/src/pages/DashboardPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DashboardPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build Focus Mode feature that detects back-to-back meetings and automatically schedules 1-2 minute 'reset breaks' between them. Each reset break offers guided content: breathing exercise, eye relaxation, neck stretch, or short mindfulness audio. Provide one-tap start button and snooze option for each break.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Focus/FocusMode.tsx",
+          "frontend/src/components/Focus/ResetBreak.tsx",
+          "frontend/src/components/Focus/ActivityContent.tsx",
+          "frontend/src/data/wellnessScripts.ts",
+          "frontend/src/hooks/useResetBreaks.ts",
+          "frontend/src/pages/FocusModePage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/wellnessScripts.ts",
+          "frontend/src/pages/FocusModePage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Implement Smart Focus Blocks feature that suggests 30-90 minute focus blocks based on free calendar slots. Allow users to lock these blocks and send notifications to protect them from interruptions. Users should be able to accept, modify duration, or reject suggested blocks.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Focus/SmartFocusBlocks.tsx",
+          "frontend/src/components/Focus/FocusBlockCard.tsx",
+          "frontend/src/hooks/useFocusBlocks.ts",
+          "frontend/src/pages/DashboardPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DashboardPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Create stress check-in system with a 10-second mood slider that prompts user 2-3 times per day. Build a dashboard that displays: today's meeting load score, current stress level from check-ins, and number of focus blocks used today.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/StressCheckIn/MoodSlider.tsx",
+          "frontend/src/components/StressCheckIn/CheckInPrompt.tsx",
+          "frontend/src/components/Dashboard/TodaySummary.tsx",
+          "frontend/src/pages/DashboardPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DashboardPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Build Sleep Mode with nightly wind-down routine that sends reminders for: screens off time, short meditation, and journaling. Implement 'late-call recovery plan' that detects when meetings end late (after 8 PM), adjusts next morning alarm time accordingly, and suggests a lighter morning routine.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Sleep/SleepMode.tsx",
+          "frontend/src/components/Sleep/WindDownRoutine.tsx",
+          "frontend/src/components/Sleep/LateCallRecovery.tsx",
+          "frontend/src/hooks/useSleepRoutine.ts",
+          "frontend/src/pages/SleepModePage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/SleepModePage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-7",
+        "summary": "Implement caffeine cutoff reminder system. Collect user's last caffeine consumption time and recommend a customizable cutoff time (default 6 hours before sleep time). Send reminders at cutoff time and track adherence over time.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Caffeine/CaffeineCutoff.tsx",
+          "frontend/src/components/Caffeine/CaffeineTracker.tsx",
+          "frontend/src/hooks/useCaffeineReminder.ts",
+          "frontend/src/pages/DashboardPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/DashboardPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-8",
+        "summary": "Create simple daily diet plan generator that produces breakfast, lunch, dinner, and hydration suggestions focused on energy and sleep quality. Make it customizable by vegetarian/non-vegetarian preference and include light dinner option. Display prominent disclaimer: 'This is not medical advice. Consult a healthcare professional for personalized dietary guidance.'",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Diet/DietPlan.tsx",
+          "frontend/src/components/Diet/MealCard.tsx",
+          "frontend/src/data/dietSuggestions.ts",
+          "frontend/src/hooks/useDietPlan.ts",
+          "frontend/src/pages/DietPlanPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/dietSuggestions.ts",
+          "frontend/src/pages/DietPlanPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Build weekly insights report that analyzes patterns and provides 3 actionable tips. Analyze correlations between: late meetings and stress, high-stress days and break usage, poor sleep nights and caffeine cutoff adherence. Generate specific recommendations like: propose earlier meeting wrap-up times, suggest adding more breaks on high-stress days, recommend earlier caffeine cutoff for poor sleep patterns.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Insights/WeeklyInsights.tsx",
+          "frontend/src/components/Insights/InsightCard.tsx",
+          "frontend/src/hooks/useWeeklyInsights.ts",
+          "frontend/src/pages/InsightsPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/InsightsPage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/breathing-illustration.dim_300x300.png",
+    "frontend/public/assets/generated/caffeine-icon.dim_128x128.png",
+    "frontend/public/assets/generated/calendar-icon.dim_128x128.png",
+    "frontend/public/assets/generated/focus-icon.dim_128x128.png",
+    "frontend/public/assets/generated/hero-bg.dim_1200x400.png",
+    "frontend/public/assets/generated/sleep-icon.dim_128x128.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Layout/AppLayout.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/data/dietSuggestions.ts",
+    "frontend/src/data/wellnessScripts.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/DietPlanPage.tsx",
+    "frontend/src/pages/FocusModePage.tsx",
+    "frontend/src/pages/InsightsPage.tsx",
+    "frontend/src/pages/OnboardingPage.tsx",
+    "frontend/src/pages/PrivacyPage.tsx",
+    "frontend/src/pages/SleepModePage.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

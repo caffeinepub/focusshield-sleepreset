@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "FocusShield+SleepReset - a stress management and sleep optimization app for urban professionals that integrates with calendars to track meeting load, schedule micro-breaks during busy days, provide focus time protection, evening wind-down routines, caffeine cutoff reminders, simple diet suggestions, and weekly insights to help reduce burnout and improve sleep quality",
+  "architectural_notes": [
+    "Mobile-first architecture with offline-capable routines",
+    "Local storage primary with optional cloud sync for data portability",
+    "Calendar API integration (read-only) for Google Calendar and Outlook",
+    "Notification system for breaks, focus blocks, wind-down, and caffeine cutoffs",
+    "Meeting load scoring algorithm based on duration, back-to-back patterns, and late-hour meetings",
+    "Sample content library for breathing exercises, eye-rest routines, stretches, and mindfulness audio",
+    "Privacy-by-design: local data processing, no employer data sharing, transparent privacy policy"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Calming hero background with warm gradient for dashboard header (hero-bg.dim_1200x400.png)\n- Focus mode icon showing meditation pose in warm tones (focus-icon.dim_128x128.png)\n- Sleep mode icon with crescent moon and stars in soft colors (sleep-icon.dim_128x128.png)\n- Caffeine cup icon with clock overlay for cutoff reminders (caffeine-icon.dim_128x128.png)\n- Calendar icon with checkmark for meeting load display (calendar-icon.dim_128x128.png)\n- Wellness illustration showing breathing exercise concept (breathing-illustration.dim_300x300.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-onboarding-flow-that-collects-user-preferences-wake-time-sleep-time-work-hours-typical-meeting-load-caffeine-habits-diet-preference-vegetarian-non-vegetarian-and-goals-less-stress-better-sleep-better-focus-store-these-preferences-in-the-backend-user-profile",
+      "title": "Create onboarding flow that collects user preferences: wake time, sleep time, work hours, typical meeting load, caffeine habits, diet preference (vegetarian/non-vegetarian), and goals (less stress, better sleep, better focus). Store these preferences in the backend user profile.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-calendar-integration-placeholder-for-google-outlook-calendars-that-reads-meeting-times-only-no-meeting-content-calculate-and-store-a-daily-meeting-load-score-based-on-total-meeting-hours-number-of-back-to-back-meetings-and-meetings-scheduled-after-7-pm-display-this-score-on-the-dashboard",
+      "title": "Implement calendar integration placeholder for Google/Outlook calendars that reads meeting times only (no meeting content). Calculate and store a daily 'meeting load score' based on: total meeting hours, number of back-to-back meetings, and meetings scheduled after 7 PM. Display this score on the dashboard.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-focus-mode-feature-that-detects-back-to-back-meetings-and-automatically-schedules-1-2-minute-reset-breaks-between-them-each-reset-break-offers-guided-content-breathing-exercise-eye-relaxation-neck-stretch-or-short-mindfulness-audio-provide-one-tap-start-button-and-snooze-option-for-each-break",
+      "title": "Build Focus Mode feature that detects back-to-back meetings and automatically schedules 1-2 minute 'reset breaks' between them. Each reset break offers guided content: breathing exercise, eye relaxation, neck stretch, or short mindfulness audio. Provide one-tap start button and snooze option for each break.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-smart-focus-blocks-feature-that-suggests-30-90-minute-focus-blocks-based-on-free-calendar-slots-allow-users-to-lock-these-blocks-and-send-notifications-to-protect-them-from-interruptions-users-should-be-able-to-accept-modify-duration-or-reject-suggested-blocks",
+      "title": "Implement Smart Focus Blocks feature that suggests 30-90 minute focus blocks based on free calendar slots. Allow users to lock these blocks and send notifications to protect them from interruptions. Users should be able to accept, modify duration, or reject suggested blocks.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-stress-check-in-system-with-a-10-second-mood-slider-that-prompts-user-2-3-times-per-day-build-a-dashboard-that-displays-today-s-meeting-load-score-current-stress-level-from-check-ins-and-number-of-focus-blocks-used-today",
+      "title": "Create stress check-in system with a 10-second mood slider that prompts user 2-3 times per day. Build a dashboard that displays: today's meeting load score, current stress level from check-ins, and number of focus blocks used today.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-sleep-mode-with-nightly-wind-down-routine-that-sends-reminders-for-screens-off-time-short-meditation-and-journaling-implement-late-call-recovery-plan-that-detects-when-meetings-end-late-after-8-pm-adjusts-next-morning-alarm-time-accordingly-and-suggests-a-lighter-morning-routine",
+      "title": "Build Sleep Mode with nightly wind-down routine that sends reminders for: screens off time, short meditation, and journaling. Implement 'late-call recovery plan' that detects when meetings end late (after 8 PM), adjusts next morning alarm time accordingly, and suggests a lighter morning routine.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-caffeine-cutoff-reminder-system-collect-user-s-last-caffeine-consumption-time-and-recommend-a-customizable-cutoff-time-default-6-hours-before-sleep-time-send-reminders-at-cutoff-time-and-track-adherence-over-time",
+      "title": "Implement caffeine cutoff reminder system. Collect user's last caffeine consumption time and recommend a customizable cutoff time (default 6 hours before sleep time). Send reminders at cutoff time and track adherence over time.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-simple-daily-diet-plan-generator-that-produces-breakfast-lunch-dinner-and-hydration-suggestions-focused-on-energy-and-sleep-quality-make-it-customizable-by-vegetarian-non-vegetarian-preference-and-include-light-dinner-option-display-prominent-disclaimer-this-is-not-medical-advice-consult-a-healthcare-professional-for-personalized-dietary-guidance",
+      "title": "Create simple daily diet plan generator that produces breakfast, lunch, dinner, and hydration suggestions focused on energy and sleep quality. Make it customizable by vegetarian/non-vegetarian preference and include light dinner option. Display prominent disclaimer: 'This is not medical advice. Consult a healthcare professional for personalized dietary guidance.'",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-weekly-insights-report-that-analyzes-patterns-and-provides-3-actionable-tips-analyze-correlations-between-late-meetings-and-stress-high-stress-days-and-break-usage-poor-sleep-nights-and-caffeine-cutoff-adherence-generate-specific-recommendations-like-propose-earlier-meeting-wrap-up-times-suggest-adding-more-breaks-on-high-stress-days-recommend-earlier-caffeine-cutoff-for-poor-sleep-patterns",
+      "title": "Build weekly insights report that analyzes patterns and provides 3 actionable tips. Analyze correlations between: late meetings and stress, high-stress days and break usage, poor sleep nights and caffeine cutoff adherence. Generate specific recommendations like: propose earlier meeting wrap-up times, suggest adding more breaks on high-stress days, recommend earlier caffeine cutoff for poor sleep patterns.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-privacy-focused-architecture-with-local-data-storage-as-default-create-clear-privacy-policy-page-that-explains-personal-data-is-stored-locally-no-data-is-shared-with-employers-optional-cloud-sync-is-available-for-backup-only-ensure-meeting-content-is-never-stored-only-timing-data",
+      "title": "Implement privacy-focused architecture with local data storage as default. Create clear privacy policy page that explains: personal data is stored locally, no data is shared with employers, optional cloud sync is available for backup only. Ensure meeting content is never stored, only timing data.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-clean-minimal-ui-that-works-offline-for-all-routine-features-breathing-exercises-stretches-meditation-content-diet-suggestions-ensure-notifications-work-for-reminders-and-break-prompts-implement-proper-loading-states-and-error-handling-for-calendar-integration",
+      "title": "Design a clean, minimal UI that works offline for all routine features (breathing exercises, stretches, meditation content, diet suggestions). Ensure notifications work for reminders and break prompts. Implement proper loading states and error handling for calendar integration.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-include-sample-content-scripts-for-all-wellness-activities-breathing-exercises-3-4-guided-techniques-eye-relaxation-routine-1-2-minutes-neck-and-shoulder-stretches-1-2-minutes-and-short-mindfulness-audio-scripts-2-3-variations-content-should-be-brief-calming-and-professional-in-tone",
+      "title": "Include sample content scripts for all wellness activities: breathing exercises (3-4 guided techniques), eye relaxation routine (1-2 minutes), neck and shoulder stretches (1-2 minutes), and short mindfulness audio scripts (2-3 variations). Content should be brief, calming, and professional in tone.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-and-implement-a-cohesive-visual-theme-with-warm-calming-colors-that-promote-focus-and-relaxation-use-soft-gradients-gentle-transitions-and-comfortable-spacing-typography-should-be-readable-and-soothing-create-a-consistent-style-across-all-screens-including-onboarding-dashboard-focus-mode-sleep-mode-and-insights",
+      "title": "Design and implement a cohesive visual theme with warm, calming colors that promote focus and relaxation. Use soft gradients, gentle transitions, and comfortable spacing. Typography should be readable and soothing. Create a consistent style across all screens including onboarding, dashboard, focus mode, sleep mode, and insights.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Onboarding flow with user preferences collection (wake/sleep times, work hours, meeting load, caffeine habits, diet preference, goals)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Calendar integration (Google/Outlook) with meeting load score calculation (total hours, back-to-back meetings, late meetings)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Focus mode with auto-scheduled reset breaks (1-2 min guided breathing, eye relaxation, neck stretch, mindfulness audio) with one-tap start and snooze",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Smart focus blocks feature to suggest and lock 30-90 min focus periods based on free calendar slots with protection notifications",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Stress check-in system with 10-second mood slider 2-3 times/day and simple dashboard showing meeting load, stress, focus blocks used",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Sleep mode with nightly wind-down routine reminders (screens off, meditation, journaling) and late-call recovery plan with adjusted morning alarms",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Caffeine cutoff reminder system with customizable cutoff time and adherence tracking",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Simple diet plan generator (breakfast/lunch/dinner + hydration) customizable by veg/non-veg with light dinner preference and medical disclaimer",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Weekly insights report with 3 pattern-based tips (late meetings, high stress, poor sleep correlation)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Privacy-focused architecture with local data storage, no employer sharing, optional cloud sync, and clear privacy page",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "FocusShield+SleepReset",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

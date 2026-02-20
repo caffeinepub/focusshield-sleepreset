@@ -1,0 +1,111 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-20T05:55:42.373Z",
+  "summary": "The implementation provides a comprehensive FocusShield+SleepReset app with onboarding, dashboard, focus mode, sleep mode, diet planning, insights, and privacy features. However, several key requirements are missing or incomplete, particularly around calendar integration, meeting load scoring, notifications, and some automation features.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Calendar integration placeholder for Google/Outlook calendars that reads meeting times only. Calculate and store a daily 'meeting load score' based on: total meeting hours, number of back-to-back meetings, and meetings scheduled after 7 PM. Display this score on the dashboard.",
+      "reason": "While the dashboard displays a hardcoded meeting load score (42), there is no actual calendar integration UI, no OAuth placeholder flow, and no calculation logic for meeting load scores based on meeting data. The backend has meeting storage but no scoring algorithm.",
+      "evidence": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Build Focus Mode feature that detects back-to-back meetings and automatically schedules 1-2 minute 'reset breaks' between them.",
+      "reason": "The Focus Mode page provides manual wellness activities but does not automatically detect back-to-back meetings or schedule reset breaks. No automation logic exists to trigger breaks based on calendar data.",
+      "evidence": [
+        "frontend/src/pages/FocusModePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Implement Smart Focus Blocks feature that suggests 30-90 minute focus blocks based on free calendar slots.",
+      "reason": "While focus blocks can be manually scheduled (30/60/90 min), there is no calendar analysis logic to suggest blocks based on free slots. The system does not automatically analyze calendar availability.",
+      "evidence": [
+        "frontend/src/pages/FocusModePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Implement 'late-call recovery plan' that detects when meetings end late (after 8 PM), adjusts next morning alarm time accordingly, and suggests a lighter morning routine.",
+      "reason": "The Sleep Mode page has a section titled 'Late Call Recovery' but only displays static information. There is no detection logic for late meetings, no alarm time adjustment, and no dynamic routine suggestions based on meeting data.",
+      "evidence": [
+        "frontend/src/pages/SleepModePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "requirement": "Implement caffeine cutoff reminder system. Collect user's last caffeine consumption time and recommend a customizable cutoff time (default 6 hours before sleep time). Send reminders at cutoff time and track adherence over time.",
+      "reason": "There is no UI for inputting daily caffeine consumption time, no cutoff time calculation or customization, no reminder sending mechanism, and no adherence tracking functionality.",
+      "evidence": []
+    },
+    {
+      "id": "REQ-9",
+      "requirement": "Build weekly insights report that analyzes patterns and provides 3 actionable tips. Analyze correlations between: late meetings and stress, high-stress days and break usage, poor sleep nights and caffeine cutoff adherence.",
+      "reason": "The Insights page displays hardcoded mock insights but lacks actual data analysis logic. No correlation algorithms exist to analyze patterns between late meetings, stress levels, break usage, sleep quality, and caffeine timing.",
+      "evidence": [
+        "frontend/src/pages/InsightsPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "Ensure notifications work for reminders and break prompts.",
+      "reason": "While notification permission is requested in App.tsx, there is no implementation of actual notification sending for reminders (wind-down, caffeine cutoff, focus blocks, stress check-ins, or break prompts).",
+      "evidence": [
+        "frontend/src/App.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Social media footer links (Facebook, X, Instagram, LinkedIn) with caffeine.ai attribution",
+      "reason": "BuildRequest explicitly lists 'Social features or sharing capabilities' as a non-goal. The footer includes social media links that were not requested.",
+      "evidence": [
+        "frontend/src/components/Layout/AppLayout.tsx"
+      ]
+    },
+    {
+      "description": "Backend includes social interaction goals storage and AI content preferences",
+      "reason": "The backend includes 'socialInteractionGoals' and 'contentPreferences.useAI' fields that were not requested in any requirement. These suggest features beyond the spec.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Meeting priority scoring system and repeating meetings functionality",
+      "reason": "The Meeting type includes a priority field (1-10 scale), diaryEntries, isRepeating, and repeatInterval properties that were not requested. The spec only asks for meeting times and duration.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.85,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/Layout/AppLayout.tsx",
+    "frontend/src/data/dietSuggestions.ts",
+    "frontend/src/data/wellnessScripts.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/DietPlanPage.tsx",
+    "frontend/src/pages/FocusModePage.tsx",
+    "frontend/src/pages/InsightsPage.tsx",
+    "frontend/src/pages/OnboardingPage.tsx",
+    "frontend/src/pages/PrivacyPage.tsx",
+    "frontend/src/pages/SleepModePage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
